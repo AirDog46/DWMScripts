@@ -31,6 +31,7 @@ cd %WINDIR%\system32
 mkdir %USERPROFILE%\Documents\backup
 mkdir %USERPROFILE%\Documents\backup\dlls
 mkdir %USERPROFILE%\Documents\backup\exes
+mkdir %USERPROFILE%\Documents\backup\acls
 
 echo Saving ACLs (permissions) of files
 icacls dwmcore.dll /save %USERPROFILE%\Documents\backup\acls\dwmcore.dll.acl
