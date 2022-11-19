@@ -24,8 +24,9 @@ pause
 color 7
 cls
 
-echo Setting windows shell to cmd.exe
+echo Setting windows shell to cmd.exe & adding PSExec to always run as admin
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /d cmd.exe /f
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v %USERPROFILE%\Downloads\PSTools\psexec64.exe /d "~ RUNASADMIN" /f
 
 cd %WINDIR%\system32
 mkdir %USERPROFILE%\Documents\backup
