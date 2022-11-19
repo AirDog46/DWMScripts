@@ -35,11 +35,11 @@ mkdir %USERPROFILE%\Documents\backup\exes
 mkdir %USERPROFILE%\Documents\backup\acls
 
 echo Saving ACLs (permissions) of files
-icacls dwmcore.dll /save %USERPROFILE%\Documents\backup\acls\dwmcore.dll.acl
-icacls dwmapi.dll /save %USERPROFILE%\Documents\backup\acls\dwmapi.dll.acl
-icacls dwmredir.dll /save %USERPROFILE%\Documents\backup\acls\dwmredir.dll.acl
-icacls dwmscene.dll /save %USERPROFILE%\Documents\backup\acls\dwmscene.dll.acl
-icacls dwmghost.dll /save %USERPROFILE%\Documents\backup\acls\dwmghost.dll.acl
+rem icacls dwmcore.dll /save %USERPROFILE%\Documents\backup\acls\dwmcore.dll.acl
+rem icacls dwmapi.dll /save %USERPROFILE%\Documents\backup\acls\dwmapi.dll.acl
+rem icacls dwmredir.dll /save %USERPROFILE%\Documents\backup\acls\dwmredir.dll.acl
+rem icacls dwmscene.dll /save %USERPROFILE%\Documents\backup\acls\dwmscene.dll.acl
+rem icacls dwmghost.dll /save %USERPROFILE%\Documents\backup\acls\dwmghost.dll.acl
 icacls dwminit.dll /save %USERPROFILE%\Documents\backup\acls\dwminit.dll.acl
 icacls Windows.UI.Logon.dll /save %USERPROFILE%\Documents\backup\acls\Windows.UI.Logon.dll.acl
 
@@ -47,11 +47,11 @@ icacls dwm.exe /save %USERPROFILE%\Documents\backup\acls\dwm.exe.acl
 icacls sihost.exe /save %USERPROFILE%\Documents\backup\acls\sihost.exe.acl
 
 echo Taking over files
-takeown /f dwmcore.dll        
-takeown /f dwmapi.dll         
-takeown /f dwmredir.dll       
-takeown /f dwmscene.dll       
-takeown /f dwmghost.dll       
+rem takeown /f dwmcore.dll        
+rem takeown /f dwmapi.dll         
+rem takeown /f dwmredir.dll       
+rem takeown /f dwmscene.dll       
+rem takeown /f dwmghost.dll       
 takeown /f dwminit.dll        
 takeown /f Windows.UI.Logon.dll
 
@@ -59,11 +59,11 @@ takeown /f dwm.exe
 takeown /f sihost.exe 		
 
 echo Modifying file permissions
-icacls dwmcore.dll /grant %USERNAME%:F
-icacls dwmapi.dll /grant %USERNAME%:F
-icacls dwmredir.dll /grant %USERNAME%:F
-icacls dwmscene.dll /grant %USERNAME%:F
-icacls dwmghost.dll /grant %USERNAME%:F
+rem icacls dwmcore.dll /grant %USERNAME%:F
+rem icacls dwmapi.dll /grant %USERNAME%:F
+rem icacls dwmredir.dll /grant %USERNAME%:F
+rem icacls dwmscene.dll /grant %USERNAME%:F
+rem icacls dwmghost.dll /grant %USERNAME%:F
 icacls dwminit.dll /grant %USERNAME%:F
 icacls Windows.UI.Logon.dll /grant %USERNAME%:F
 
@@ -79,11 +79,11 @@ echo Killing problematic processes (theyre twitter users)
 %USERPROFILE%\Downloads\PSTools\pskill64.exe /accepteula dwm.exe
 
 echo Moving files to backup location
-move dwmcore.dll              %USERPROFILE%\Documents\backup\dlls
-move dwmapi.dll               %USERPROFILE%\Documents\backup\dlls
-move dwmredir.dll             %USERPROFILE%\Documents\backup\dlls
-move dwmscene.dll             %USERPROFILE%\Documents\backup\dlls
-move dwmghost.dll             %USERPROFILE%\Documents\backup\dlls
+rem move dwmcore.dll              %USERPROFILE%\Documents\backup\dlls
+rem move dwmapi.dll               %USERPROFILE%\Documents\backup\dlls
+rem move dwmredir.dll             %USERPROFILE%\Documents\backup\dlls
+rem move dwmscene.dll             %USERPROFILE%\Documents\backup\dlls
+rem move dwmghost.dll             %USERPROFILE%\Documents\backup\dlls
 move dwminit.dll              %USERPROFILE%\Documents\backup\dlls
 move Windows.UI.Logon.dll     %USERPROFILE%\Documents\backup\dlls
 

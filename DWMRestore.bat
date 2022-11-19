@@ -15,11 +15,11 @@ move %USERPROFILE%\Documents\backup\dlls\* %WINDIR%\System32
 move %USERPROFILE%\Documents\backup\exes\* %WINDIR%\System32
 
 echo Restoring ownership
-icacls %WINDIR%\System32\dwmcore.dll /setowner "NT SERVICE\TrustedInstaller"
-icacls %WINDIR%\System32\dwmapi.dll /setowner "NT SERVICE\TrustedInstaller"
-icacls %WINDIR%\System32\dwmredir.dll /setowner "NT SERVICE\TrustedInstaller"
-icacls %WINDIR%\System32\dwmscene.dll /setowner "NT SERVICE\TrustedInstaller"
-icacls %WINDIR%\System32\dwmghost.dll /setowner "NT SERVICE\TrustedInstaller"
+rem icacls %WINDIR%\System32\dwmcore.dll /setowner "NT SERVICE\TrustedInstaller"
+rem icacls %WINDIR%\System32\dwmapi.dll /setowner "NT SERVICE\TrustedInstaller"
+rem icacls %WINDIR%\System32\dwmredir.dll /setowner "NT SERVICE\TrustedInstaller"
+rem icacls %WINDIR%\System32\dwmscene.dll /setowner "NT SERVICE\TrustedInstaller"
+rem icacls %WINDIR%\System32\dwmghost.dll /setowner "NT SERVICE\TrustedInstaller"
 icacls %WINDIR%\System32\dwminit.dll /setowner "NT SERVICE\TrustedInstaller"
 icacls %WINDIR%\System32\Windows.UI.Logon.dll /setowner "NT SERVICE\TrustedInstaller"
 
@@ -27,11 +27,11 @@ icacls %WINDIR%\System32\sihost.exe /setowner "NT SERVICE\TrustedInstaller"
 icacls %WINDIR%\System32\dwm.exe /setowner "NT SERVICE\TrustedInstaller"
 
 echo Restoring ACLs
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmcore.dll.acl
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmapi.dll.acl
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmredir.dll.acl
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmscene.dll.acl
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmghost.dll.acl
+rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmcore.dll.acl
+rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmapi.dll.acl
+rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmredir.dll.acl
+rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmscene.dll.acl
+rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmghost.dll.acl
 icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwminit.dll.acl
 icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\Windows.UI.Logon.dll.acl
 
