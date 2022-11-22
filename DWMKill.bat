@@ -8,11 +8,11 @@ echo processes in order to do it's job. Any usage of this
 echo program is at your own risk and I am not responsible
 echo for any damages that might be caused to your system
 echo or to your personal files. 
-echo 
+echo. 
 echo While I try to make this program work in every
 echo situation and cause as little damage as possible,
 echo this program might still cause issues on unsupported systems.
-echo 
+echo. 
 echo Tested on Windows 11 22H2.
 
 pause

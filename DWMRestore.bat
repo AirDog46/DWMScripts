@@ -2,7 +2,7 @@
 
 echo So you want DWM back eh?
 echo Well this file is for you.
-
+echo .
 echo THIS WILL KILL YOUR SESSION SO SAVE ALL YOUR STUFF!
 pause
 
