@@ -68,7 +68,6 @@ if %singlestep%==yes pause
 
 echo Setting windows shell to %shell% and adding PSExec to always run as admin
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /d %shell% /f
-reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v %pstools%\psexec64.exe /d "~ RUNASADMIN" /f
 
 if %singlestep%==yes pause
 
