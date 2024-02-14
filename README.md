@@ -3,7 +3,7 @@ Scripts to disable and enable dwm at will.
 
 # How to install
 <ol>
-	<li>Download PSTools from <pst href="https://learn.microsoft.com/en-us/sysinternals/downloads/pstools">here</pst> and extract it in USERPROFILE\Downloads\PSTools. (Do this even if you moved your downloads folder because I hardcoded this crap)</li>
+	<li>Download PSTools from [here](https://learn.microsoft.com/en-us/sysinternals/downloads/pstools) and extract, then give it the **folder location** when you're prompted.</li>
 	<li>Run the DWMKill.bat script as Administrator.</li>
 	<li>Read the warning.</li>
 	<li>...</li>

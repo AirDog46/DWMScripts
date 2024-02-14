@@ -1,45 +1,66 @@
 @echo off
 
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+if '%ERRORLEVEL%' NEQ '0' goto noadmin
+
 echo So you want DWM back eh?
 echo Well this file is for you.
 echo .
-echo THIS WILL KILL YOUR SESSION SO SAVE ALL YOUR STUFF!
+echo THIS WILL LOG YOU OUT SO SAVE ALL YOUR STUFF!
 pause
 
+echo.
+echo Do you want to enable single step mode? (This will pause after each operation)
+set /P singlestep=Type yes for yes, anything else for no: 
+
 cls
-echo Setting windows shell to explorer.exe
+echo Resetting shell to explorer.exe.
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" /v Shell /d explorer.exe /f
+
+if %singlestep%==yes pause
 
 echo Moving files back
 move %USERPROFILE%\Documents\backup\dlls\* %WINDIR%\System32
 move %USERPROFILE%\Documents\backup\exes\* %WINDIR%\System32
 
-echo Restoring ownership
-rem icacls %WINDIR%\System32\dwmcore.dll /setowner "NT SERVICE\TrustedInstaller"
-rem icacls %WINDIR%\System32\dwmapi.dll /setowner "NT SERVICE\TrustedInstaller"
-rem icacls %WINDIR%\System32\dwmredir.dll /setowner "NT SERVICE\TrustedInstaller"
-rem icacls %WINDIR%\System32\dwmscene.dll /setowner "NT SERVICE\TrustedInstaller"
-rem icacls %WINDIR%\System32\dwmghost.dll /setowner "NT SERVICE\TrustedInstaller"
-icacls %WINDIR%\System32\dwminit.dll /setowner "NT SERVICE\TrustedInstaller"
-icacls %WINDIR%\System32\Windows.UI.Logon.dll /setowner "NT SERVICE\TrustedInstaller"
+if %singlestep%==yes pause
 
-icacls %WINDIR%\System32\sihost.exe /setowner "NT SERVICE\TrustedInstaller"
-icacls %WINDIR%\System32\dwm.exe /setowner "NT SERVICE\TrustedInstaller"
+if not exist C:\Windows\SystemResources\Windows.UI.TaskManager (
+	echo Disabling extra fixes
+	reg delete HKEY_CURRENT_USER\SOFTWARE\CLASSES\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2} /f
+	reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Blocked" /f
+	move %USERPROFILE%\Documents\backup\Windows.UI.TaskManager C:\Windows\SystemResources
+	icacls C:\Windows\SystemResources /restore %USERPROFILE%\Documents\backup\acls\TaskManagerExtra.acl
+	if exist C:\Windows\SystemResources\Windows.UI.TaskManager (
+	 del %USERPROFILE%\Documents\backup\acls\TaskManagerExtra.acl
+	) else (
+	 echo Could not restore task manager. Please do so manually or run sfc /scannow.
+	)
+)
+
+echo Restoring ownership
+for %%F in (
+  dwminit.dll
+  Windows.UI.Logon.dll
+  sihost.exe
+  dwm.exe
+  ) do icacls %WINDIR%\System32\%%F /setowner "NT SERVICE\TrustedInstaller"
+
+if %singlestep%==yes pause
 
 echo Restoring ACLs
-rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmcore.dll.acl
-rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmapi.dll.acl
-rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmredir.dll.acl
-rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmscene.dll.acl
-rem icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwmghost.dll.acl
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwminit.dll.acl
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\Windows.UI.Logon.dll.acl
+for %%A in (%USERPROFILE%\Documents\backup\acls\*) do icacls %WINDIR%\System32 /restore %%A
 
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\dwm.exe.acl
-icacls %WINDIR%\System32 /restore %USERPROFILE%\Documents\backup\acls\sihost.exe.acl
+if %singlestep%==yes pause
 
 echo Removing backup folder
 rmdir %USERPROFILE%\Documents\backup /s /q
 
-echo Killing winlogon
-%USERPROFILE%\Downloads\PSTools\pskill64.exe /accepteula winlogon.exe
+if %singlestep%==yes pause
+
+echo Logging off
+logoff
+
+:noadmin
+echo You must run this script as administrator.
+pause
