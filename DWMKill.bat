@@ -17,9 +17,6 @@ echo situation and cause as little damage as possible,
 echo this program might still cause issues on unsupported systems.
 echo. 
 echo Tested on Windows 11 22H2.
-
-pause
-
 echo THIS WILL CRASH YOUR SESSION SO SAVE ALL YOUR DATA BEFOREHAND!
 
 pause
